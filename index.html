@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude AI — Kecerdasan Buatan Terdepan dari Anthropic</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="progress-bar"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- ══════════════════════════════════
+     POPUP OVERLAY — muncul saat kirim pesan demo
+     ══════════════════════════════════ -->
+<div class="popup-overlay" id="popupOverlay">
+  <div class="popup-box">
+    <button class="popup-close" id="popupClose" aria-label="Tutup">✕</button>
+
+    <span class="popup-sparkle">✦</span>
+    <div class="popup-title" id="popupTitle">Lanjutkan di Claude yang Asli!</div>
+
+    <div class="popup-url">
+      <div class="popup-url-dot"></div>
+      <span>claude.ai</span> — Aman &amp; Gratis
+    </div>
+
+    <p class="popup-subtitle" id="popupBody">
+      Demo ini hanya secuil kemampuan Claude. Di <strong>claude.ai</strong> kamu bisa bertanya apapun, upload file, coding bareng, dan masih banyak lagi — semua gratis!
+    </p>
+
+    <p class="popup-subtitle" id="popupQuote" style="display:none;font-style:italic;color:var(--accent);font-size:0.85rem;margin-bottom:16px"></p>
+
+    <a href="https://claude.ai" target="_blank" rel="noopener" class="popup-cta">
+      ✦ Buka Claude.ai Sekarang — Gratis!
+    </a>
+    <button class="popup-dismiss" id="popupDismiss">Nanti saja ›</button>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <img src="assets/images/claude-color.png" alt="Claude" class="logo-img" />
+    Claude AI
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">Tentang</a></li>
+    <li><a href="#features">Fitur</a></li>
+    <li><a href="#capabilities">Kemampuan</a></li>
+    <li><a href="#usecases">Kegunaan</a></li>
+    <li><a href="#safety">Keamanan</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-toggle" id="themeToggle" title="Toggle tema" aria-label="Toggle tema">◑</button>
+    <a href="https://claude.ai" target="_blank" class="nav-cta">Coba Gratis →</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about">Tentang</a>
+  <a href="#features">Fitur</a>
+  <a href="#capabilities">Kemampuan</a>
+  <a href="#usecases">Kegunaan</a>
+  <a href="#safety">Keamanan</a>
+  <a href="#faq">FAQ</a>
+  <a href="https://claude.ai" target="_blank" style="color:var(--accent);font-weight:700;">→ Coba Claude Gratis</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="grid-bg"></div>
+  <canvas id="particles"></canvas>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <div class="badge-dot"></div>
+      Terbaru dari Anthropic — Claude 4
+    </div>
+    <h1>
+      <span class="h1-line1">Kecerdasan Buatan</span>
+      <span class="h1-line2">Yang Benar-Benar Memahami Kamu</span>
+    </h1>
+    <p class="hero-desc">
+      Claude adalah AI generasi terbaru dari Anthropic — dirancang untuk menjadi teman berpikir, asisten riset, partner coding, dan kreator konten yang cerdas, jujur, dan aman untuk digunakan setiap hari.
+    </p>
+    <div class="hero-btns">
+      <a href="https://claude.ai" target="_blank" class="btn-primary">
+        ✦ Coba Claude Sekarang
+      </a>
+      <a href="#features" class="btn-secondary">
+        Pelajari Lebih Lanjut ↓
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num"><span class="counter" data-target="200">0</span>K+</div>
+        <div class="stat-label">Pengguna Aktif</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <div class="stat-num"><span class="counter" data-target="150">0</span>+</div>
+        <div class="stat-label">Bahasa Didukung</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <div class="stat-num"><span class="counter" data-target="99">0</span>%</div>
+        <div class="stat-label">Kepuasan Pengguna</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <div class="stat-num"><span class="counter" data-target="24">0</span>/7</div>
+        <div class="stat-label">Selalu Tersedia</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-down">
+    <div class="scroll-line"></div>
+    SCROLL
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track" id="marquee">
+    <div class="marquee-item"><span class="mq-dot"></span> Kecerdasan Tingkat Tinggi</div>
+    <div class="marquee-item"><span class="mq-dot"></span> Menulis &amp; Editing</div>
+    <div class="marquee-item"><span class="mq-dot"></span> Coding Expert</div>
+    <div class="marquee-item"><span class="mq-dot"></span> Analisis Data</div>
+    <div class="marquee-item"><span class="mq-dot"></span> Riset Ilmiah</div>
+    <div class="marquee-item"><span class="mq-dot"></span> Kreativitas Tanpa Batas</div>
+    <div class="marquee-item"><span class="mq-dot"></span> Multibahasa</div>
+    <div class="marquee-item"><span class="mq-dot"></span> Aman &amp; Terpercaya</div>
+    <div class="marquee-item"><span class="mq-dot"></span> Respons Super Cepat</div>
+    <div class="marquee-item"><span class="mq-dot"></span> Partner Terbaik</div>
+    <div class="marquee-item"><span class="mq-dot"></span> Kecerdasan Tingkat Tinggi</div>
+    <div class="marquee-item"><span class="mq-dot"></span> Menulis &amp; Editing</div>
+    <div class="marquee-item"><span class="mq-dot"></span> Coding Expert</div>
+    <div class="marquee-item"><span class="mq-dot"></span> Analisis Data</div>
+    <div class="marquee-item"><span class="mq-dot"></span> Riset Ilmiah</div>
+    <div class="marquee-item"><span class="mq-dot"></span> Kreativitas Tanpa Batas</div>
+    <div class="marquee-item"><span class="mq-dot"></span> Multibahasa</div>
+    <div class="marquee-item"><span class="mq-dot"></span> Aman &amp; Terpercaya</div>
+    <div class="marquee-item"><span class="mq-dot"></span> Respons Super Cepat</div>
+    <div class="marquee-item"><span class="mq-dot"></span> Partner Terbaik</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-visual reveal-left">
+    <div class="brain-container">
+      <svg class="brain-svg" width="280" height="280" viewBox="0 0 280 280" fill="none">
+        <defs>
+          <radialGradient id="brainGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(155,109,255,0.6)"/>
+            <stop offset="100%" stop-color="rgba(91,141,238,0.2)"/>
+          </radialGradient>
+          <radialGradient id="nodeGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#d97b4a"/>
+            <stop offset="100%" stop-color="#9b6dff"/>
+          </radialGradient>
+        </defs>
+        <circle cx="140" cy="140" r="130" stroke="rgba(91,141,238,0.15)" stroke-width="1" stroke-dasharray="4 8"/>
+        <circle cx="140" cy="140" r="100" stroke="rgba(155,109,255,0.12)" stroke-width="1"/>
+        <line x1="140" y1="40" x2="200" y2="90" stroke="rgba(91,141,238,0.3)" stroke-width="1"/>
+        <line x1="140" y1="40" x2="80" y2="90" stroke="rgba(91,141,238,0.3)" stroke-width="1"/>
+        <line x1="200" y1="90" x2="230" y2="160" stroke="rgba(155,109,255,0.3)" stroke-width="1"/>
+        <line x1="80" y1="90" x2="50" y2="160" stroke="rgba(155,109,255,0.3)" stroke-width="1"/>
+        <line x1="230" y1="160" x2="200" y2="230" stroke="rgba(217,123,74,0.3)" stroke-width="1"/>
+        <line x1="50" y1="160" x2="80" y2="230" stroke="rgba(217,123,74,0.3)" stroke-width="1"/>
+        <line x1="200" y1="230" x2="140" y2="240" stroke="rgba(91,141,238,0.3)" stroke-width="1"/>
+        <line x1="80" y1="230" x2="140" y2="240" stroke="rgba(91,141,238,0.3)" stroke-width="1"/>
+        <line x1="200" y1="90" x2="140" y2="140" stroke="rgba(155,109,255,0.2)" stroke-width="1"/>
+        <line x1="80" y1="90" x2="140" y2="140" stroke="rgba(155,109,255,0.2)" stroke-width="1"/>
+        <line x1="230" y1="160" x2="140" y2="140" stroke="rgba(217,123,74,0.2)" stroke-width="1"/>
+        <line x1="50" y1="160" x2="140" y2="140" stroke="rgba(217,123,74,0.2)" stroke-width="1"/>
+        <circle cx="140" cy="140" r="22" fill="url(#brainGrad)" opacity="0.8"/>
+        <circle cx="140" cy="140" r="10" fill="url(#nodeGrad)"/>
+        <circle class="neuron-pulse" cx="140" cy="40" r="7" fill="#5b8dee" style="animation-delay:0s"/>
+        <circle class="neuron-pulse" cx="200" cy="90" r="6" fill="#9b6dff" style="animation-delay:0.3s"/>
+        <circle class="neuron-pulse" cx="230" cy="160" r="7" fill="#d97b4a" style="animation-delay:0.6s"/>
+        <circle class="neuron-pulse" cx="200" cy="230" r="6" fill="#4fd1c5" style="animation-delay:0.9s"/>
+        <circle class="neuron-pulse" cx="140" cy="240" r="7" fill="#5b8dee" style="animation-delay:1.2s"/>
+        <circle class="neuron-pulse" cx="80" cy="230" r="6" fill="#9b6dff" style="animation-delay:1.5s"/>
+        <circle class="neuron-pulse" cx="50" cy="160" r="7" fill="#d97b4a" style="animation-delay:1.8s"/>
+        <circle class="neuron-pulse" cx="80" cy="90" r="6" fill="#4fd1c5" style="animation-delay:2.1s"/>
+      </svg>
+    </div>
+    <div class="about-cards">
+      <div class="mini-card"><span class="mc-icon">🧠</span> Konteks 200K token</div>
+      <div class="mini-card"><span class="mc-icon">⚡</span> Respons real-time</div>
+      <div class="mini-card"><span class="mc-icon">🔒</span> Privacy-first</div>
+      <div class="mini-card"><span class="mc-icon">🌍</span> 150+ bahasa</div>
+    </div>
+  </div>
+  <div class="about-text reveal-right">
+    <div class="section-tag">Tentang Claude</div>
+    <h2>Bukan Sekadar Chatbot.<br>Tapi Mitra Berpikir.</h2>
+    <p class="section-desc">
+      Claude dibangun di atas prinsip Constitutional AI — sebuah pendekatan revolusioner untuk menciptakan AI yang cerdas sekaligus jujur, aman, dan bermanfaat. Bukan hanya menjawab pertanyaan, Claude benar-benar <em>memahami</em> konteks dan nuansa.
+    </p>
+    <ul class="about-list">
+      <li>
+        <span class="al-icon">🎯</span>
+        <div>
+          <div class="al-title">Konteks Panjang yang Luar Biasa</div>
+          <div class="al-desc">Dengan jendela konteks hingga 200.000 token, Claude dapat membaca dan menganalisis dokumen panjang, buku, laporan riset, atau ribuan baris kode sekaligus tanpa kehilangan detail.</div>
+        </div>
+      </li>
+      <li>
+        <span class="al-icon">💬</span>
+        <div>
+          <div class="al-title">Percakapan yang Alami &amp; Mendalam</div>
+          <div class="al-desc">Claude tidak hanya menjawab — ia bertanya balik, mengklarifikasi, dan membantu kamu berpikir lebih jernih. Seperti berbicara dengan teman paling cerdas yang kamu punya.</div>
+        </div>
+      </li>
+      <li>
+        <span class="al-icon">🔬</span>
+        <div>
+          <div class="al-title">Dilatih dengan Data Berkualitas Tinggi</div>
+          <div class="al-desc">Model Claude dilatih oleh tim peneliti AI terbaik dunia di Anthropic, menggunakan teknik RLHF dan Constitutional AI untuk hasil yang konsisten dan dapat dipercaya.</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="features-header reveal">
+    <div class="section-tag">Fitur Unggulan</div>
+    <h2>Satu AI, Seribu Kemampuan</h2>
+    <p class="section-desc">Dari menulis kreatif hingga analisis teknis, Claude hadir dengan serangkaian kemampuan yang dirancang untuk memenuhi setiap kebutuhan produktivitas kamu.</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card reveal" style="transition-delay:0.05s">
+      <div class="feature-icon fi-blue">✍️</div>
+      <div class="feature-title">Menulis &amp; Konten</div>
+      <div class="feature-desc">Hasilkan esai, artikel blog, skrip video, copy iklan, caption media sosial, laporan bisnis, dan konten apa pun dengan kualitas profesional. Claude memahami tone, gaya, dan audiens target kamu.</div>
+      <span class="feature-tag ft-blue">Kreativitas</span>
+    </div>
+    <div class="feature-card reveal" style="transition-delay:0.1s">
+      <div class="feature-icon fi-purple">💻</div>
+      <div class="feature-title">Coding &amp; Debugging</div>
+      <div class="feature-desc">Tulis kode dalam 40+ bahasa pemrograman, debug error yang membingungkan, jelaskan algoritma kompleks, refactor kode lama, dan bangun aplikasi dari nol bersama Claude sebagai co-pilot.</div>
+      <span class="feature-tag ft-purple">Developer</span>
+    </div>
+    <div class="feature-card reveal" style="transition-delay:0.15s">
+      <div class="feature-icon fi-orange">📊</div>
+      <div class="feature-title">Analisis &amp; Riset</div>
+      <div class="feature-desc">Unggah dokumen, laporan keuangan, paper ilmiah, atau data spreadsheet. Claude akan mengekstrak insight tersembunyi, membuat ringkasan komprehensif, dan menjawab pertanyaan mendalam dari data kamu.</div>
+      <span class="feature-tag ft-orange">Produktivitas</span>
+    </div>
+    <div class="feature-card reveal" style="transition-delay:0.2s">
+      <div class="feature-icon fi-cyan">🌐</div>
+      <div class="feature-title">Terjemahan &amp; Lokalisasi</div>
+      <div class="feature-desc">Terjemahkan konten dalam 150+ bahasa dengan nuansa budaya yang tepat. Bukan sekadar terjemahan kata-per-kata — Claude memahami idiom, konteks bisnis, dan tone yang sesuai dengan audiens lokal.</div>
+      <span class="feature-tag ft-cyan">Global</span>
+    </div>
+    <div class="feature-card reveal" style="transition-delay:0.25s">
+      <div class="feature-icon fi-blue">🎓</div>
+      <div class="feature-title">Belajar &amp; Mengajar</div>
+      <div class="feature-desc">Claude adalah tutor pribadi terbaik. Jelaskan konsep matematika rumit dengan cara yang mudah, bantu persiapan ujian, buat materi pembelajaran interaktif, dan sesuaikan penjelasan dengan level pemahaman kamu.</div>
+      <span class="feature-tag ft-blue">Edukasi</span>
+    </div>
+    <div class="feature-card reveal" style="transition-delay:0.3s">
+      <div class="feature-icon fi-purple">🤔</div>
+      <div class="feature-title">Brainstorming &amp; Strategi</div>
+      <div class="feature-desc">Dari ide bisnis baru hingga solusi masalah kompleks, Claude adalah brainstorming partner yang tak pernah kehabisan ide. Tantang asumsi, eksplorasi perspektif baru, dan temukan solusi inovatif bersama.</div>
+      <span class="feature-tag ft-purple">Strategi</span>
+    </div>
+  </div>
+</section>
+
+<!-- CAPABILITIES -->
+<section id="capabilities">
+  <div class="cap-header reveal">
+    <div class="section-tag">Kemampuan</div>
+    <h2>Lihat Sendiri Cara Kerjanya</h2>
+    <p class="section-desc">Jelajahi berbagai kemampuan Claude melalui demo interaktif di bawah ini.</p>
+  </div>
+  <div class="cap-tabs reveal">
+    <button class="cap-tab active" onclick="switchTab('chat')">💬 Percakapan</button>
+    <button class="cap-tab" onclick="switchTab('code')">💻 Coding</button>
+    <button class="cap-tab" onclick="switchTab('analysis')">📊 Analisis</button>
+  </div>
+
+  <!-- Panel Chat -->
+  <div id="panel-chat" class="cap-panel active reveal">
+    <div class="cap-panel-text">
+      <h3>Percakapan yang Terasa Manusiawi</h3>
+      <p>Claude tidak hanya menjawab pertanyaan — ia membangun dialog yang bermakna. Dengan memori konteks yang kuat, setiap percakapan terasa berkelanjutan dan personal.</p>
+      <ul class="cap-bullets">
+        <li>Mengingat konteks sepanjang sesi percakapan</li>
+        <li>Menyesuaikan tone: formal, santai, teknis, atau kreatif</li>
+        <li>Bertanya balik untuk memahami kebutuhan lebih dalam</li>
+        <li>Mendukung percakapan dalam Bahasa Indonesia yang natural</li>
+        <li>Mampu berdebat, merevisi, dan berpikir kritis</li>
+      </ul>
+    </div>
+    <div class="cap-panel-visual">
+      <div class="chat-demo" id="chatDemo">
+        <div class="chat-msg chat-user">Hei Claude! Bantu aku jelaskan konsep machine learning untuk presentasi besok 🎯</div>
+        <div class="chat-msg chat-ai">Tentu! Untuk presentasi yang menarik, coba analogikan machine learning seperti mengajari anak kecil mengenali kucing. Kamu tunjukkan ribuan foto kucing — akhirnya otaknya belajar sendiri. Itulah cara kerja ML! Mau aku bantu buat slide deck-nya? 🚀</div>
+        <div class="chat-msg chat-user">Wah bagus! Bisa kasih contoh konkret yang lebih menarik?</div>
+        <div class="chat-msg chat-ai">Pasti! Bayangkan Netflix merekomendasikan film. Setiap kali kamu menonton, ML belajar seleramu. Setelah ribuan data, ia tahu kamu suka thriller psikologis di malam Jumat. Contoh lain: filter spam email, deteksi wajah di kamera, hingga mobil self-driving! 🎬🤖</div>
+        <div class="chat-typing"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>
+      </div>
+      <div class="demo-prompt">
+        <input class="demo-input" id="demoInput" type="text" placeholder="Ketik pertanyaanmu dan lihat apa yang terjadi..." />
+        <button class="demo-send" onclick="sendDemo()">Kirim</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel Code -->
+  <div id="panel-code" class="cap-panel reveal">
+    <div class="cap-panel-text">
+      <h3>Coding Partner yang Tak Pernah Tidur</h3>
+      <p>Dari debugging hingga arsitektur sistem skala besar, Claude memahami kode di tingkat yang lebih dalam — bukan hanya sintaks, tapi juga logika dan best practice.</p>
+      <ul class="cap-bullets">
+        <li>Mendukung 40+ bahasa: Python, JS, Go, Rust, Swift, dan lainnya</li>
+        <li>Menjelaskan kode kompleks dengan bahasa sederhana</li>
+        <li>Mengidentifikasi bug dan security vulnerabilities</li>
+        <li>Menulis unit tests secara otomatis</li>
+        <li>Refactoring dan optimasi performa kode</li>
+      </ul>
+    </div>
+    <div class="cap-panel-visual">
+      <div class="code-demo">
+        <p class="code-line"><span class="code-cm"># Claude membantu debugging real-time</span></p>
+        <p class="code-line"><span class="code-kw">def</span> <span class="code-fn">analyze_sentiment</span>(text: <span class="code-var">str</span>) -> <span class="code-var">dict</span>:</p>
+        <p class="code-line">  <span class="code-cm">"""Analisis sentimen teks menggunakan Claude API"""</span></p>
+        <p class="code-line">  <span class="code-var">response</span> = client.messages.create(</p>
+        <p class="code-line">    model=<span class="code-str">"claude-sonnet-4-20250514"</span>,</p>
+        <p class="code-line">    max_tokens=<span class="code-num">1024</span>,</p>
+        <p class="code-line">    messages=[{</p>
+        <p class="code-line">      <span class="code-str">"role"</span>: <span class="code-str">"user"</span>,</p>
+        <p class="code-line">      <span class="code-str">"content"</span>: <span class="code-fn">f</span><span class="code-str">"Analyze: {text}"</span></p>
+        <p class="code-line">    }]</p>
+        <p class="code-line">  )</p>
+        <p class="code-line">  <span class="code-kw">return</span> {</p>
+        <p class="code-line">    <span class="code-str">"score"</span>: <span class="code-fn">extract_score</span>(response),</p>
+        <p class="code-line">    <span class="code-str">"label"</span>: <span class="code-fn">get_label</span>(response)<span class="code-cursor">|</span></p>
+        <p class="code-line">  }</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel Analysis -->
+  <div id="panel-analysis" class="cap-panel reveal">
+    <div class="cap-panel-text">
+      <h3>Analisis Data yang Mendalam &amp; Akurat</h3>
+      <p>Upload dokumen apapun dan Claude akan mengekstrak insight berharga, membuat visualisasi data, dan memberikan rekomendasi berbasis data yang dapat ditindaklanjuti.</p>
+      <ul class="cap-bullets">
+        <li>Membaca PDF, spreadsheet, dan dokumen panjang</li>
+        <li>Ekstraksi insight tersembunyi dari data mentah</li>
+        <li>Ringkasan eksekutif yang komprehensif</li>
+        <li>Analisis sentimen dan tren</li>
+        <li>Rekomendasi berbasis data yang actionable</li>
+      </ul>
+    </div>
+    <div class="cap-panel-visual">
+      <div class="analysis-demo">
+        <p style="font-size:0.78rem;color:var(--text-muted);margin-bottom:8px;font-weight:600;">LAPORAN KINERJA Q1 2025</p>
+        <div class="analysis-bar">
+          <div class="ab-label"><span>Revenue Growth</span><span>+87%</span></div>
+          <div class="ab-track"><div class="ab-fill ab-blue" style="width:87%"></div></div>
+        </div>
+        <div class="analysis-bar" style="margin-top:12px">
+          <div class="ab-label"><span>Customer Satisfaction</span><span>94%</span></div>
+          <div class="ab-track"><div class="ab-fill ab-orange" style="width:94%"></div></div>
+        </div>
+        <div class="analysis-bar" style="margin-top:12px">
+          <div class="ab-label"><span>Market Penetration</span><span>62%</span></div>
+          <div class="ab-track"><div class="ab-fill ab-cyan" style="width:62%"></div></div>
+        </div>
+        <div class="analysis-bar" style="margin-top:12px">
+          <div class="ab-label"><span>Team Productivity</span><span>79%</span></div>
+          <div class="ab-track"><div class="ab-fill ab-purple" style="width:79%"></div></div>
+        </div>
+        <div style="margin-top:20px;padding:14px;background:rgba(217,123,74,0.08);border:1px solid rgba(217,123,74,0.2);border-radius:10px;">
+          <p style="font-size:0.75rem;font-weight:700;color:var(--accent);margin-bottom:6px;">💡 INSIGHT CLAUDE</p>
+          <p style="font-size:0.75rem;color:var(--text-muted);line-height:1.6;">Revenue tumbuh pesat namun market penetration masih 62%. Rekomendasi: fokus ekspansi ke segmen mid-market untuk mendorong penetrasi lebih dalam.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="how-header reveal">
+    <div class="section-tag">Cara Kerja</div>
+    <h2>Mulai dalam 4 Langkah Mudah</h2>
+    <p class="section-desc">Tidak perlu setup rumit atau keahlian teknis. Claude siap membantu kamu dalam hitungan detik.</p>
+  </div>
+  <div class="steps-container reveal">
+    <div class="step-card">
+      <div class="step-num">01</div>
+      <div class="step-icon">🌐</div>
+      <div class="step-title">Buka Claude.ai</div>
+      <div class="step-desc">Kunjungi claude.ai dari browser mana saja. Tidak perlu download aplikasi. Langsung akses dari desktop, tablet, atau smartphone kamu.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">02</div>
+      <div class="step-icon">👤</div>
+      <div class="step-title">Buat Akun Gratis</div>
+      <div class="step-desc">Daftar dengan email atau Google Account dalam hitungan detik. Tidak ada biaya tersembunyi. Mulai gratis, upgrade kapan saja kamu siap.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">03</div>
+      <div class="step-icon">💬</div>
+      <div class="step-title">Mulai Percakapan</div>
+      <div class="step-desc">Ketik pertanyaan, upload dokumen, tempel kode, atau ceritakan masalahmu. Tidak ada format khusus — gunakan bahasa sehari-hari kamu.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">04</div>
+      <div class="step-icon">🚀</div>
+      <div class="step-title">Dapatkan Hasilnya</div>
+      <div class="step-desc">Claude merespons dengan jawaban komprehensif, kode siap pakai, analisis mendalam, atau konten berkualitas tinggi — dalam hitungan detik.</div>
+    </div>
+  </div>
+</section>
+
+<!-- USE CASES -->
+<section id="usecases">
+  <div class="uc-header reveal">
+    <div class="section-tag">Untuk Siapa?</div>
+    <h2>Claude untuk Semua Orang</h2>
+    <p class="section-desc">Pelajar, profesional, kreator, hingga pengembang — Claude hadir untuk mengakselerasi produktivitas semua orang.</p>
+  </div>
+  <div class="uc-grid">
+    <div class="uc-card uc-c1 reveal" style="transition-delay:0.05s">
+      <div class="uc-bg"></div>
+      <span class="uc-emoji">👨‍💻</span>
+      <div class="uc-title">Developer &amp; Engineer</div>
+      <div class="uc-desc">Accelerate development cycle kamu. Claude adalah senior developer yang selalu tersedia — review kode, debug, tulis dokumentasi, dan bantu arsitektur sistem yang scalable. Hemat puluhan jam per minggu.</div>
+      <div class="uc-examples">
+        <span class="uc-ex">Code Review</span>
+        <span class="uc-ex">API Documentation</span>
+        <span class="uc-ex">Unit Testing</span>
+        <span class="uc-ex">Debugging</span>
+      </div>
+    </div>
+    <div class="uc-card uc-c2 reveal" style="transition-delay:0.1s">
+      <div class="uc-bg"></div>
+      <span class="uc-emoji">✍️</span>
+      <div class="uc-title">Penulis &amp; Content Creator</div>
+      <div class="uc-desc">Dari writer's block menjadi produktivitas penuh. Claude membantu brainstorm topik, outline artikel, menulis draft pertama, mengedit, hingga mengoptimalkan konten untuk SEO dan keterlibatan audiens.</div>
+      <div class="uc-examples">
+        <span class="uc-ex">Blog Post</span>
+        <span class="uc-ex">Copywriting</span>
+        <span class="uc-ex">Social Media</span>
+        <span class="uc-ex">SEO Content</span>
+      </div>
+    </div>
+    <div class="uc-card uc-c3 reveal" style="transition-delay:0.15s">
+      <div class="uc-bg"></div>
+      <span class="uc-emoji">🎓</span>
+      <div class="uc-title">Pelajar &amp; Akademisi</div>
+      <div class="uc-desc">Tutor pribadi 24/7 yang sabar dan pintar. Claude menjelaskan konsep sulit dari berbagai sudut pandang, membantu riset, merevisi esai, mempersiapkan ujian, dan mendiskusikan topik akademis secara mendalam.</div>
+      <div class="uc-examples">
+        <span class="uc-ex">Essay Writing</span>
+        <span class="uc-ex">Riset</span>
+        <span class="uc-ex">Belajar Bahasa</span>
+        <span class="uc-ex">Matematika</span>
+      </div>
+    </div>
+    <div class="uc-card uc-c4 reveal" style="transition-delay:0.2s">
+      <div class="uc-bg"></div>
+      <span class="uc-emoji">💼</span>
+      <div class="uc-title">Profesional &amp; Bisnis</div>
+      <div class="uc-desc">Tingkatkan efisiensi kerja secara drastis. Claude membantu menyusun presentasi, menganalisis kompetitor, membuat proposal bisnis, menyiapkan laporan keuangan, dan mengotomasi tugas administratif yang berulang.</div>
+      <div class="uc-examples">
+        <span class="uc-ex">Business Plan</span>
+        <span class="uc-ex">Analisis Pasar</span>
+        <span class="uc-ex">Email Profesional</span>
+        <span class="uc-ex">Laporan</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAFETY -->
+<section id="safety">
+  <div class="safety-visual reveal-left">
+    <div class="safety-rings">
+      <div class="sring"></div>
+      <div class="sring"></div>
+      <div class="sring"></div>
+    </div>
+    <div class="shield-wrap">
+      <div class="shield-glow"></div>
+      <svg class="shield-svg" viewBox="0 0 220 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="shieldGrad" x1="0" y1="0" x2="220" y2="260" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="rgba(91,141,238,0.3)"/>
+            <stop offset="100%" stop-color="rgba(155,109,255,0.2)"/>
+          </linearGradient>
+        </defs>
+        <path d="M110 10 L200 45 L200 130 C200 185 155 225 110 248 C65 225 20 185 20 130 L20 45 Z" fill="url(#shieldGrad)" stroke="rgba(91,141,238,0.5)" stroke-width="1.5"/>
+        <path d="M110 30 L185 60 L185 130 C185 175 148 210 110 228 C72 210 35 175 35 130 L35 60 Z" fill="rgba(91,141,238,0.08)" stroke="rgba(155,109,255,0.3)" stroke-width="1"/>
+        <text x="110" y="145" text-anchor="middle" font-size="52" font-family="sans-serif">🛡️</text>
+      </svg>
+    </div>
+    <div class="safety-badges">
+      <div class="sbadge">✅ Constitutional AI</div>
+      <div class="sbadge">🔒 End-to-End Privacy</div>
+      <div class="sbadge">🏛️ Ethical AI Principles</div>
+    </div>
+  </div>
+  <div class="reveal-right">
+    <div class="section-tag">Keamanan &amp; Kepercayaan</div>
+    <h2>AI yang Aman, Jujur, dan Bertanggung Jawab</h2>
+    <p class="section-desc">Anthropic mendirikan perusahaan ini dengan satu tujuan utama: membangun AI yang benar-benar aman bagi manusia. Keamanan bukan afterthought — ini adalah DNA dari Claude.</p>
+    <div class="safety-points">
+      <div class="sp">
+        <span class="sp-icon">⚖️</span>
+        <div>
+          <div class="sp-title">Constitutional AI</div>
+          <div class="sp-desc">Claude dilatih menggunakan teknik Constitutional AI revolusioner — seperangkat prinsip etis yang memandu setiap respons agar selalu bermanfaat, jujur, dan tidak berbahaya.</div>
+        </div>
+      </div>
+      <div class="sp">
+        <span class="sp-icon">🔐</span>
+        <div>
+          <div class="sp-title">Privasi Data yang Dijaga Ketat</div>
+          <div class="sp-desc">Percakapanmu tidak digunakan untuk melatih model tanpa izin. Anthropic memiliki kebijakan privasi yang transparan dan komitmen nyata terhadap keamanan data pengguna.</div>
+        </div>
+      </div>
+      <div class="sp">
+        <span class="sp-icon">🤝</span>
+        <div>
+          <div class="sp-title">Honesty &amp; Transparency</div>
+          <div class="sp-desc">Claude dirancang untuk mengakui ketidaktahuannya, tidak membuat fakta palsu, dan selalu jelas tentang batasannya. Kejujuran adalah nilai inti yang tidak bisa dikompromikan.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section id="compare">
+  <div class="compare-header reveal">
+    <div class="section-tag">Perbandingan</div>
+    <h2>Mengapa Claude Berbeda?</h2>
+    <p class="section-desc" style="margin:0 auto">Lihat bagaimana Claude unggul dibanding asisten AI lainnya dalam hal keamanan, kejujuran, dan kemampuan.</p>
+  </div>
+  <div class="compare-table-wrap reveal">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Fitur</th>
+          <th>AI Lainnya</th>
+          <th>✦ Claude AI</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Konteks 200K+ Token</td><td><span class="partial">⚡ Terbatas</span></td><td><span class="check">✓ Penuh</span></td></tr>
+        <tr><td>Constitutional AI Safety</td><td><span class="cross">✗ Tidak ada</span></td><td><span class="check">✓ Built-in</span></td></tr>
+        <tr><td>Kejujuran &amp; Pengakuan Batas</td><td><span class="partial">⚡ Kadang</span></td><td><span class="check">✓ Selalu</span></td></tr>
+        <tr><td>Nuansa Bahasa Indonesia</td><td><span class="partial">⚡ Dasar</span></td><td><span class="check">✓ Sangat Baik</span></td></tr>
+        <tr><td>Analisis Dokumen Panjang</td><td><span class="cross">✗ Terbatas</span></td><td><span class="check">✓ Hingga 200K</span></td></tr>
+        <tr><td>Privacy-First Architecture</td><td><span class="partial">⚡ Bervariasi</span></td><td><span class="check">✓ Terjamin</span></td></tr>
+        <tr><td>Respons Berbasis Nuansa</td><td><span class="partial">⚡ Sebagian</span></td><td><span class="check">✓ Penuh</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="testi-header reveal">
+    <div class="section-tag">Testimoni</div>
+    <h2>Dipercaya Jutaan Pengguna</h2>
+    <p class="section-desc" style="margin:0 auto">Dari startup hingga perusahaan Fortune 500, dari pelajar hingga peneliti — Claude mengubah cara kerja mereka.</p>
+  </div>
+  <div style="overflow:hidden;margin:0 -5%">
+    <div class="testi-track" id="testiTrack">
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-text">"Claude benar-benar mengubah cara saya coding. Bukan hanya nulis kode, tapi menjelaskan kenapa solusinya lebih baik. Saya belajar lebih banyak dalam sebulan dari sebelumnya."</div><div class="testi-author"><div class="testi-avatar" style="background:rgba(91,141,238,0.15)">👨‍💻</div><div><div class="testi-name">Rizki Pratama</div><div class="testi-role">Senior Developer, Jakarta</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-text">"Sebagai penulis, Claude adalah partner terbaik. Ia tidak hanya membantu menulis — tapi juga memberikan feedback jujur yang membuat tulisan saya jauh lebih baik."</div><div class="testi-author"><div class="testi-avatar" style="background:rgba(217,123,74,0.15)">✍️</div><div><div class="testi-name">Sari Dewi</div><div class="testi-role">Content Writer, Bali</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-text">"Riset untuk tesis saya yang butuh berminggu-minggu bisa dipercepat drastis dengan Claude. Analisisnya detail dan selalu menyertakan berbagai sudut pandang."</div><div class="testi-author"><div class="testi-avatar" style="background:rgba(79,209,197,0.15)">🎓</div><div><div class="testi-name">Ahmad Fauzi</div><div class="testi-role">Mahasiswa S2, Bandung</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-text">"Tim marketing kami menggunakan Claude setiap hari. Dari brief campaign hingga analisis kompetitor — produktivitas tim naik 3x lipat dalam dua bulan pertama."</div><div class="testi-author"><div class="testi-avatar" style="background:rgba(155,109,255,0.15)">💼</div><div><div class="testi-name">Maya Situmorang</div><div class="testi-role">Marketing Manager, Surabaya</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-text">"Yang paling saya suka dari Claude adalah kejujurannya. Ketika ia tidak tahu sesuatu, ia berterus terang. Itu membangun kepercayaan yang luar biasa."</div><div class="testi-author"><div class="testi-avatar" style="background:rgba(91,141,238,0.15)">🔬</div><div><div class="testi-name">Dr. Hendra Wijaya</div><div class="testi-role">Peneliti, Yogyakarta</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-text">"Startup saya bisa bergerak lebih cepat karena Claude. Legal draft, pitch deck, financial model — semua bisa dikerjakan lebih cepat dengan kualitas yang tidak pernah mengecewakan."</div><div class="testi-author"><div class="testi-avatar" style="background:rgba(217,123,74,0.15)">🚀</div><div><div class="testi-name">Kevin Santoso</div><div class="testi-role">Founder, Startup Edtech</div></div></div></div>
+      <!-- duplicates for seamless loop -->
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-text">"Claude benar-benar mengubah cara saya coding. Bukan hanya nulis kode, tapi menjelaskan kenapa solusinya lebih baik. Saya belajar lebih banyak dalam sebulan dari sebelumnya."</div><div class="testi-author"><div class="testi-avatar" style="background:rgba(91,141,238,0.15)">👨‍💻</div><div><div class="testi-name">Rizki Pratama</div><div class="testi-role">Senior Developer, Jakarta</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-text">"Sebagai penulis, Claude adalah partner terbaik. Ia tidak hanya membantu menulis — tapi juga memberikan feedback jujur yang membuat tulisan saya jauh lebih baik."</div><div class="testi-author"><div class="testi-avatar" style="background:rgba(217,123,74,0.15)">✍️</div><div><div class="testi-name">Sari Dewi</div><div class="testi-role">Content Writer, Bali</div></div></div></div>
+      <div class="testi-card"><div class="testi-stars">★★★★★</div><div class="testi-text">"Tim marketing kami menggunakan Claude setiap hari. Dari brief campaign hingga analisis kompetitor — produktivitas tim naik 3x lipat dalam dua bulan pertama."</div><div class="testi-author"><div class="testi-avatar" style="background:rgba(155,109,255,0.15)">💼</div><div><div class="testi-name">Maya Situmorang</div><div class="testi-role">Marketing Manager, Surabaya</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-bg"></div>
+  <div class="reveal">
+    <div class="section-tag" style="justify-content:center">Mulai Sekarang</div>
+    <h2>Siap Merasakan<br>Perbedaannya?</h2>
+    <p>Bergabunglah dengan jutaan pengguna yang telah merasakan manfaat Claude. Gratis untuk memulai — tidak perlu kartu kredit.</p>
+    <div class="cta-btns">
+      <a href="https://claude.ai" target="_blank" class="btn-xl btn-xl-primary">✦ Coba Claude Gratis</a>
+      <a href="https://anthropic.com" target="_blank" class="btn-xl btn-xl-ghost">Pelajari Anthropic →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="faq-header reveal">
+    <div class="section-tag">FAQ</div>
+    <h2>Pertanyaan yang Sering Ditanyakan</h2>
+    <p class="section-desc">Jawaban singkat untuk pertanyaan paling umum seputar Claude.</p>
+  </div>
+
+  <div class="faq-list reveal">
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <span>Apa itu Claude dan siapa yang membuatnya?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          Claude adalah asisten AI generasi terbaru dari <strong>Anthropic</strong>, perusahaan riset keamanan AI yang didirikan 2021. Dilatih dengan pendekatan <em>Constitutional AI</em> — metode yang memastikan AI bertindak jujur, aman, dan benar-benar bermanfaat. Bukan sekadar chatbot, Claude dirancang sebagai mitra berpikir yang memahami konteks dan nuansa.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <span>Apakah Claude gratis? Apa bedanya dengan versi berbayar?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          Ya, claude.ai tersedia <strong>gratis</strong> dengan batas penggunaan harian yang wajar. Versi <strong>Claude Pro</strong> berbayar menawarkan kuota lebih tinggi, akses prioritas, upload file lebih besar, dan model Claude terbaru. Ada juga paket <strong>Team</strong> dan <strong>Enterprise</strong> untuk kebutuhan bisnis. Mulai gratis, upgrade kapan saja.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <span>Apakah percakapan saya dengan Claude aman dan privat?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          Anthropic berkomitmen serius terhadap privasi. Secara default, <strong>percakapanmu tidak digunakan untuk melatih model</strong> tanpa izin eksplisit. Data pengguna tidak dijual ke pihak ketiga. Untuk pengguna enterprise, tersedia opsi perlindungan data yang lebih ketat. Detail lengkap di <em>anthropic.com/privacy</em>.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <span>Bahasa pemrograman dan file apa saja yang didukung?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          Claude mahir dalam <strong>40+ bahasa pemrograman</strong> — Python, JavaScript, TypeScript, Go, Rust, Swift, dan lainnya. Untuk file, kamu bisa upload <strong>PDF, gambar, kode sumber, CSV, dan teks</strong>. Claude juga mendukung analisis gambar (multimodal) dan memproses dokumen hingga <strong>200.000 token</strong> sekaligus dalam satu sesi.
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">
+        <span>Bagaimana cara mulai menggunakan Claude sekarang?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <div class="faq-answer-inner">
+          Sangat mudah — tidak perlu install apapun. <strong>1)</strong> Buka <em>claude.ai</em> dari browser mana saja. <strong>2)</strong> Daftar gratis dengan email atau akun Google. <strong>3)</strong> Langsung mulai percakapan dalam Bahasa Indonesia atau bahasa apapun. Untuk developer, tersedia <strong>Claude API</strong> di anthropic.com/api dengan SDK Python dan TypeScript.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- KELOMPOK 4 -->
+<section id="team" class="team-section">
+  <div class="team-glass-bg"></div>
+  <div class="team-inner reveal">
+    <div class="section-tag" style="justify-content:center">Pembuat</div>
+    <h2 class="team-title">Kelompok 4</h2>
+    <p class="team-sub">Proyek ini dibuat oleh empat orang yang percaya bahwa teknologi AI harus dikenal semua orang.</p>
+    <div class="team-grid">
+
+      <a href="https://www.tiktok.com/@haikalkhamdi24" target="_blank" rel="noopener" class="team-card">
+        <div class="team-card-glow"></div>
+        <div class="team-avatar">
+          <span class="team-initials">AP</span>
+          <div class="team-avatar-ring"></div>
+        </div>
+        <div class="team-name">M. Haikal Khamdi</div>
+        <div class="team-handle">@haikalkhamdi24</div>
+        <div class="team-platform tiktok-badge">TikTok</div>
+      </a>
+
+      <a href="https://www.tiktok.com/@ttiktok654" target="_blank" rel="noopener" class="team-card">
+        <div class="team-card-glow"></div>
+        <div class="team-avatar">
+          <span class="team-initials">CR</span>
+          <div class="team-avatar-ring"></div>
+        </div>
+        <div class="team-name">M. Tsaqib Ashfahani</div>
+        <div class="team-handle">@ttiktok654</div>
+        <div class="team-platform tiktok-badge">TikTok</div>
+      </a>
+
+      <a href="https://www.tiktok.com/@oczzb" target="_blank" rel="noopener" class="team-card">
+        <div class="team-card-glow"></div>
+        <div class="team-avatar">
+          <span class="team-initials">CR</span>
+          <div class="team-avatar-ring"></div>
+        </div>
+        <div class="team-name">Octa Aditya Pratama</div>
+        <div class="team-handle">@oczzb</div>
+        <div class="team-platform tiktok-badge">TikTok</div>
+      </a>
+
+      <a href="https://github.com/kanawangyy" target="_blank" rel="noopener" class="team-card">
+        <div class="team-card-glow"></div>
+        <div class="team-avatar">
+          <span class="team-initials">WB</span>
+          <div class="team-avatar-ring"></div>
+        </div>
+        <div class="team-name">Wangsit Bagus Satriatama</div>
+        <div class="team-handle">@kanawangyy</div>
+        <div class="team-platform github-badge">GitHub</div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="nav-logo" style="text-decoration:none">
+        <img src="assets/images/claude-color.png" alt="Claude" class="logo-img" style="animation:none" />
+        Claude AI
+      </div>
+      <p>Dibangun oleh Anthropic — perusahaan AI safety terdepan yang berdedikasi membangun kecerdasan buatan yang aman dan bermanfaat bagi seluruh umat manusia.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Produk</h4>
+      <ul>
+        <li><a href="https://claude.ai" target="_blank">Claude.ai</a></li>
+        <li><a href="https://claude.ai/download" target="_blank">Claude Mobile</a></li>
+        <li><a href="https://www.anthropic.com/api" target="_blank">API Claude</a></li>
+        <li><a href="https://claude.ai/claude-code" target="_blank">Claude Code</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Perusahaan</h4>
+      <ul>
+        <li><a href="https://anthropic.com" target="_blank">Anthropic</a></li>
+        <li><a href="https://www.anthropic.com/research" target="_blank">Riset</a></li>
+        <li><a href="https://www.anthropic.com/safety" target="_blank">Keamanan AI</a></li>
+        <li><a href="https://www.anthropic.com/careers" target="_blank">Karier</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Dukungan</h4>
+      <ul>
+        <li><a href="https://support.claude.ai" target="_blank">Bantuan</a></li>
+        <li><a href="https://docs.anthropic.com" target="_blank">Dokumentasi</a></li>
+        <li><a href="https://www.anthropic.com/privacy" target="_blank">Privasi</a></li>
+        <li><a href="https://www.anthropic.com/terms" target="_blank">Syarat &amp; Ketentuan</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Anthropic, PBC. Semua hak dilindungi.</span>
+    <div class="footer-social">
+      <a href="https://twitter.com/anthropic" target="_blank" class="social-btn" title="Twitter">𝕏</a>
+      <a href="https://linkedin.com/company/anthropic" target="_blank" class="social-btn" title="LinkedIn">in</a>
+      <a href="https://github.com/anthropics" target="_blank" class="social-btn" title="GitHub">⌥</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
